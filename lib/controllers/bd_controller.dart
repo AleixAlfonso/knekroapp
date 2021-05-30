@@ -37,7 +37,6 @@ class FirebaseApi {
       'icono': icono,
       'rutaAudio': rutaAudio,
       'titulo': titulo,
-      'fecha': date.toString()
     });
   }
 }

@@ -43,7 +43,7 @@ android {
         applicationId "com.aleix.knekroapp"
         minSdkVersion 21
         targetSdkVersion 30
-        versionCode 3
+        versionCode 4
         versionName flutterVersionName
     }
 

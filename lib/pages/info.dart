@@ -111,8 +111,10 @@ class InfoPage extends StatelessWidget {
                       SizedBox(
                         height: 30,
                       ),
-                      socialMediaAleix('https://twitter.com/AleixAlfonso',
-                          'https://www.twitch.tv/knekro'),
+                      socialMediaAleix(
+                          'https://twitter.com/AleixAlfonso',
+                          'https://www.twitch.tv/aleiixmen',
+                          'https://www.patreon.com/aleiixmen'),
                     ],
                   ),
                 ),
@@ -198,7 +200,7 @@ class InfoPage extends StatelessWidget {
     );
   }
 
-  socialMediaAleix(String urltwitter, String urltwitch) {
+  socialMediaAleix(String urltwitter, String urltwitch, String urlpatreon) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
@@ -213,16 +215,30 @@ class InfoPage extends StatelessWidget {
                   : throw 'Could not launch $urltwitter';
             },
             icon: Image.asset('assets/TwitterLogo.png')),
-
-        // IconButton(
-        //   onPressed: () async {
-        //     await canLaunch('https://www.twitch.tv/knekro')
-        //         ? await launch('https://www.twitch.tv/knekro')
-        //         : throw 'Could not launch https://www.twitch.tv/knekro';
-        //   },
-        //   icon: Image.asset('assets/TwitchLogo.png'),
-        //   iconSize: 30,
-        // ),
+        SizedBox(
+          width: 40,
+        ),
+        IconButton(
+          onPressed: () async {
+            await canLaunch(urltwitch)
+                ? await launch(urltwitch)
+                : throw 'Could not launch $urltwitch';
+          },
+          icon: Image.asset('assets/TwitchLogo.png'),
+          iconSize: 60,
+        ),
+        SizedBox(
+          width: 40,
+        ),
+        IconButton(
+          onPressed: () async {
+            await canLaunch(urlpatreon)
+                ? await launch(urlpatreon)
+                : throw 'Could not launch $urlpatreon';
+          },
+          icon: Image.asset('assets/Patreon.png'),
+          iconSize: 60,
+        ),
       ],
     );
   }

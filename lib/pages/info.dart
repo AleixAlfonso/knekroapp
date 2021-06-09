@@ -114,7 +114,7 @@ class InfoPage extends StatelessWidget {
                       socialMediaAleix(
                           'https://twitter.com/AleixAlfonso',
                           'https://www.twitch.tv/aleiixmen',
-                          'https://www.patreon.com/aleiixmen'),
+                          'https://streamlabs.com/aleiixmen/tip'),
                     ],
                   ),
                 ),
@@ -200,7 +200,7 @@ class InfoPage extends StatelessWidget {
     );
   }
 
-  socialMediaAleix(String urltwitter, String urltwitch, String urlpatreon) {
+  socialMediaAleix(String urltwitter, String urltwitch, String utlpaypal) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
@@ -232,12 +232,12 @@ class InfoPage extends StatelessWidget {
         ),
         IconButton(
           onPressed: () async {
-            await canLaunch(urlpatreon)
-                ? await launch(urlpatreon)
-                : throw 'Could not launch $urlpatreon';
+            await canLaunch(utlpaypal)
+                ? await launch(utlpaypal)
+                : throw 'Could not launch $utlpaypal';
           },
-          icon: Image.asset('assets/Patreon.png'),
-          iconSize: 60,
+          icon: Image.asset('assets/DonacionSinFondo.png'),
+          iconSize: 70,
         ),
       ],
     );

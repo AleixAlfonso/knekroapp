@@ -12,6 +12,7 @@ class SettingsPage extends StatefulWidget {
 class _SettingsPageState extends State<SettingsPage> {
   @override
   Widget build(BuildContext context) {
+    var mediaQuery = MediaQuery.of(context);
     return Scaffold(
       appBar: AppBar(
         title: Text('Configuracion'),
@@ -19,29 +20,35 @@ class _SettingsPageState extends State<SettingsPage> {
       body: ListView(
         children: <Widget>[
           ListTile(
-            title: Text('Tema Claro/Oscuro'),
-            trailing: IconButton(
-              icon: Icon(Icons.brightness_medium),
-              onPressed: () async {
-                SharedPreferences sharedPreferences =
-                    await SharedPreferences.getInstance();
-                setState(() {
-                  currentTheme.switchTheme();
-                });
-              },
+            trailing: Icon(
+              Icons.brightness_medium,
+              size: mediaQuery.size.height * 0.03,
             ),
+            title: Text(
+              'Tema Claro/Oscuro',
+            ),
+            onTap: () async {
+              SharedPreferences sharedPreferences =
+                  await SharedPreferences.getInstance();
+              setState(() {
+                currentTheme.switchTheme();
+              });
+            },
           ),
-          addAudio(),
-          isAdmin ? cerrarSesion() : iniciarSesion(),
-          information(),
+          addAudio(mediaQuery),
+          isAdmin ? cerrarSesion(mediaQuery) : iniciarSesion(mediaQuery),
+          information(mediaQuery),
         ],
       ),
     );
   }
 
-  Widget cerrarSesion() {
+  Widget cerrarSesion(MediaQueryData mediaQuery) {
     return ListTile(
-      trailing: Icon(Icons.logout),
+      trailing: Icon(
+        Icons.logout,
+        size: mediaQuery.size.height * 0.03,
+      ),
       title: Text('Cerrar Sesion'),
       onTap: () async {
         SharedPreferences sharedPreferences =
@@ -59,12 +66,12 @@ class _SettingsPageState extends State<SettingsPage> {
     );
   }
 
-  Widget iniciarSesion() {
+  Widget iniciarSesion(MediaQueryData mediaQuery) {
     return ListTile(
       title: Text('Admin Log In'),
       trailing: Icon(
         Icons.login,
-        size: 20,
+        size: mediaQuery.size.height * 0.03,
       ),
       onTap: () {
         Navigator.pushNamed(context, 'adminlogin');
@@ -72,12 +79,12 @@ class _SettingsPageState extends State<SettingsPage> {
     );
   }
 
-  Widget addAudio() {
+  Widget addAudio(MediaQueryData mediaQuery) {
     if (isAdmin) {
       return ListTile(
         trailing: Icon(
           Icons.add,
-          size: 30,
+          size: mediaQuery.size.height * 0.04,
         ),
         title: Text(
           'Añadir audio',
@@ -90,11 +97,11 @@ class _SettingsPageState extends State<SettingsPage> {
     return Container();
   }
 
-  information() {
+  information(MediaQueryData mediaQuery) {
     return ListTile(
       trailing: Icon(
         Icons.info,
-        size: 30,
+        size: mediaQuery.size.height * 0.03,
       ),
       title: Text(
         'Información',

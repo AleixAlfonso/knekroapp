@@ -5,6 +5,7 @@ import 'package:url_launcher/url_launcher.dart';
 class InfoPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    var mediaQuery = MediaQuery.of(context);
     return Scaffold(
       appBar: AppBar(
         title: Text('Información'),
@@ -46,24 +47,25 @@ class InfoPage extends StatelessWidget {
                         style: TextStyle(color: Colors.white, fontSize: 30),
                       ),
                       SizedBox(
-                        height: 20,
+                        height: mediaQuery.size.height * 0.03,
                       ),
                       CircleAvatar(
                         radius: 60,
                         backgroundImage: AssetImage('assets/Miscelanea.png'),
                       ),
                       SizedBox(
-                        height: 30,
+                        height: mediaQuery.size.height * 0.03,
                       ),
                       Text('Knekro',
                           style: TextStyle(color: Colors.white, fontSize: 30)),
                       SizedBox(
-                        height: 30,
+                        height: mediaQuery.size.height * 0.03,
                       ),
                       socialMedia(
                           'https://twitter.com/KNekro',
                           'https://www.youtube.com/user/KNekroGamer',
-                          'https://www.twitch.tv/knekro'),
+                          'https://www.twitch.tv/knekro',
+                          mediaQuery),
                     ],
                   ),
                 ),
@@ -97,58 +99,29 @@ class InfoPage extends StatelessWidget {
                         style: TextStyle(color: Colors.white, fontSize: 30),
                       ),
                       SizedBox(
-                        height: 20,
+                        height: mediaQuery.size.height * 0.03,
                       ),
                       CircleAvatar(
                         radius: 60,
                         backgroundImage: AssetImage('assets/aleix.png'),
                       ),
                       SizedBox(
-                        height: 30,
+                        height: mediaQuery.size.height * 0.03,
                       ),
                       Text('Aleixmen',
                           style: TextStyle(color: Colors.white, fontSize: 30)),
                       SizedBox(
-                        height: 30,
+                        height: mediaQuery.size.height * 0.03,
                       ),
                       socialMediaAleix(
                           'https://twitter.com/AleixAlfonso',
                           'https://www.twitch.tv/aleiixmen',
-                          'https://streamlabs.com/aleiixmen/tip'),
+                          'https://streamlabs.com/aleiixmen/tip',
+                          mediaQuery),
                     ],
                   ),
                 ),
               ),
-              // ClipRRect(
-              //   borderRadius: BorderRadius.circular(20),
-              //   child: Container(
-              //     color: Colors.grey,
-              //     child: Column(
-              //       children: [
-              //         Text(
-              //           'Programador',
-              //           style: TextStyle(color: Colors.white),
-              //         ),
-              //         SizedBox(
-              //           height: 10,
-              //         ),
-              //         CircleAvatar(
-              //           radius: 30,
-              //           backgroundImage: AssetImage('assets/aleix.png'),
-              //         ),
-              //         SizedBox(
-              //           height: 10,
-              //         ),
-              //         Text('Aleixmen', style: TextStyle(color: Colors.white)),
-              //         SizedBox(
-              //           height: 10,
-              //         ),
-              //         socialMediaAleix('https://twitter.com/KNekro',
-              //             'https://www.twitch.tv/knekro'),
-              //       ],
-              //     ),
-              //   ),
-              // )
               Text(
                   'Reporte de bugs y sugerencias en el twitter del App Creator.')
             ],
@@ -158,15 +131,16 @@ class InfoPage extends StatelessWidget {
     );
   }
 
-  socialMedia(String urltwitter, String urlyoutube, String urltwitch) {
+  socialMedia(String urltwitter, String urlyoutube, String urltwitch,
+      MediaQueryData mediaQuery) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         SizedBox(
-          width: 10,
+          width: mediaQuery.size.width * 0.05,
         ),
         IconButton(
-            iconSize: 60,
+            iconSize: mediaQuery.size.height * 0.07,
             onPressed: () async {
               await canLaunch(urltwitter)
                   ? await launch(urltwitter)
@@ -174,7 +148,7 @@ class InfoPage extends StatelessWidget {
             },
             icon: Image.asset('assets/TwitterLogo.png')),
         SizedBox(
-          width: 40,
+          width: mediaQuery.size.width * 0.05,
         ),
         IconButton(
           onPressed: () async {
@@ -183,13 +157,13 @@ class InfoPage extends StatelessWidget {
                 : throw 'Could not launch https://www.twitch.tv/knekro';
           },
           icon: Image.asset('assets/TwitchLogo.png'),
-          iconSize: 60,
+          iconSize: mediaQuery.size.height * 0.07,
         ),
         SizedBox(
-          width: 40,
+          width: mediaQuery.size.width * 0.05,
         ),
         IconButton(
-            iconSize: 60,
+            iconSize: mediaQuery.size.height * 0.07,
             onPressed: () async {
               await canLaunch('https://www.youtube.com/user/KNekroGamer')
                   ? await launch('https://www.youtube.com/user/KNekroGamer')
@@ -200,15 +174,16 @@ class InfoPage extends StatelessWidget {
     );
   }
 
-  socialMediaAleix(String urltwitter, String urltwitch, String utlpaypal) {
+  socialMediaAleix(String urltwitter, String urltwitch, String utlpaypal,
+      MediaQueryData mediaQuery) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         SizedBox(
-          width: 10,
+          width: mediaQuery.size.width * 0.05,
         ),
         IconButton(
-            iconSize: 60,
+            iconSize: mediaQuery.size.height * 0.07,
             onPressed: () async {
               await canLaunch(urltwitter)
                   ? await launch(urltwitter)
@@ -216,7 +191,7 @@ class InfoPage extends StatelessWidget {
             },
             icon: Image.asset('assets/TwitterLogo.png')),
         SizedBox(
-          width: 40,
+          width: mediaQuery.size.width * 0.05,
         ),
         IconButton(
           onPressed: () async {
@@ -225,10 +200,10 @@ class InfoPage extends StatelessWidget {
                 : throw 'Could not launch $urltwitch';
           },
           icon: Image.asset('assets/TwitchLogo.png'),
-          iconSize: 60,
+          iconSize: mediaQuery.size.height * 0.07,
         ),
         SizedBox(
-          width: 40,
+          width: mediaQuery.size.width * 0.05,
         ),
         IconButton(
           onPressed: () async {
@@ -237,7 +212,7 @@ class InfoPage extends StatelessWidget {
                 : throw 'Could not launch $utlpaypal';
           },
           icon: Image.asset('assets/DonacionSinFondo.png'),
-          iconSize: 70,
+          iconSize: mediaQuery.size.height * 0.08,
         ),
       ],
     );

@@ -58,14 +58,14 @@ class InfoPage extends StatelessWidget {
                       ),
                       Text('Knekro',
                           style: TextStyle(color: Colors.white, fontSize: 30)),
-                      SizedBox(
-                        height: mediaQuery.size.height * 0.03,
-                      ),
                       socialMedia(
                           'https://twitter.com/KNekro',
                           'https://www.youtube.com/user/KNekroGamer',
                           'https://www.twitch.tv/knekro',
                           mediaQuery),
+                      SizedBox(
+                        height: mediaQuery.size.height * 0.03,
+                      ),
                     ],
                   ),
                 ),
@@ -110,14 +110,14 @@ class InfoPage extends StatelessWidget {
                       ),
                       Text('Aleixmen',
                           style: TextStyle(color: Colors.white, fontSize: 30)),
-                      SizedBox(
-                        height: mediaQuery.size.height * 0.03,
-                      ),
                       socialMediaAleix(
                           'https://twitter.com/AleixAlfonso',
                           'https://www.twitch.tv/aleiixmen',
                           'https://streamlabs.com/aleiixmen/tip',
                           mediaQuery),
+                      SizedBox(
+                        height: mediaQuery.size.height * 0.03,
+                      ),
                     ],
                   ),
                 ),

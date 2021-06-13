@@ -43,8 +43,8 @@ android {
         applicationId "com.aleix.knekroapp"
         minSdkVersion 21
         targetSdkVersion 30
-        versionCode 7
-        versionName '1.0.1'
+        versionCode 8
+        versionName '1.0.2'
     }
 
    signingConfigs {

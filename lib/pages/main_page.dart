@@ -17,7 +17,7 @@ class _MainPageState extends State<MainPage> {
   final CollectionReference collectionReference =
       FirebaseFirestore.instance.collection('audios');
   AudioPlayer audioPlayer = new AudioPlayer();
-
+  bool novedad = false;
   // ignore: deprecated_member_use
 
   @override
@@ -71,17 +71,38 @@ class _MainPageState extends State<MainPage> {
                 titulo: ds['titulo'],
                 rutaAudio: ds['rutaAudio'],
                 icono: ds['icono'],
-                id: doc.id));
+                id: doc.id,
+                fecha: ds['fecha']));
           }
 
           return ListView.builder(
               itemCount: audios.length,
               itemBuilder: (BuildContext context, int index) {
+                audios.sort((a, b) => b.fecha.compareTo(a.fecha));
+
+                String titulo = '';
+                DateTime fechaAudio =
+                    DateTime.parse(audios[index].fecha.toString());
+                DateTime now = DateTime.now();
+                int days = now.difference(fechaAudio).inDays;
+
                 return ListTile(
                   leading: CircleAvatar(
                     backgroundImage: AssetImage(audios[index].icono),
                   ),
-                  title: Text(audios[index].titulo),
+                  title: RichText(
+                    text: TextSpan(
+                        style: DefaultTextStyle.of(context).style,
+                        children: <TextSpan>[
+                          TextSpan(text: '${audios[index].titulo}'),
+                          days < 7
+                              ? TextSpan(
+                                  text: '  NOVEDAD ',
+                                  style: TextStyle(
+                                      color: Colors.red, fontSize: 20))
+                              : TextSpan(),
+                        ]),
+                  ),
                   onTap: () async {
                     await audioPlayer.play(audios[index].rutaAudio);
                   },
@@ -100,6 +121,12 @@ class _MainPageState extends State<MainPage> {
           showAlertDialog(context, id);
         },
         icon: Icon(Icons.close));
+  }
+
+  int daysBetween(DateTime from, DateTime to) {
+    from = DateTime(from.year, from.month, from.day);
+    to = DateTime(to.year, to.month, to.day);
+    return (to.difference(from).inHours / 24).round();
   }
 
   showAlertDialog(BuildContext context, id) {

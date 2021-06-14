@@ -113,7 +113,7 @@ class InfoPage extends StatelessWidget {
                       socialMediaAleix(
                           'https://twitter.com/AleixAlfonso',
                           'https://www.twitch.tv/aleiixmen',
-                          'https://streamlabs.com/aleiixmen/tip',
+                          'https://www.paypal.com/donate?hosted_button_id=UQNC9MVWDQCSA',
                           mediaQuery),
                       SizedBox(
                         height: mediaQuery.size.height * 0.03,
@@ -211,7 +211,7 @@ class InfoPage extends StatelessWidget {
                 ? await launch(utlpaypal)
                 : throw 'Could not launch $utlpaypal';
           },
-          icon: Image.asset('assets/DonacionSinFondo.png'),
+          icon: Image.asset('assets/PayPal.png'),
           iconSize: mediaQuery.size.height * 0.08,
         ),
       ],

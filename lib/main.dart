@@ -6,7 +6,10 @@ import 'package:knekroapp/pages/settings_page.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:new_version/new_version.dart';
 import 'package:provider/provider.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
+
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'controllers/authentication_setvices.dart';
@@ -30,6 +33,7 @@ class _MyAppState extends State<MyApp> {
     currentTheme.addListener(() {
       setState(() {});
     });
+
     super.initState();
   }
 

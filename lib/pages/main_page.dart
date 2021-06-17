@@ -1,7 +1,9 @@
 import 'package:audioplayers/audioplayers.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:knekroapp/models/audio_model.dart';
+import 'package:new_version/new_version.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'config/config.dart';
@@ -22,6 +24,7 @@ class _MainPageState extends State<MainPage> {
 
   @override
   initState() {
+    _checkVersion(context);
     getValidationData();
     super.initState();
   }
@@ -37,6 +40,29 @@ class _MainPageState extends State<MainPage> {
       }
     });
     print(isAdmin);
+  }
+
+  void _checkVersion(BuildContext context) async {
+    final newVersion = NewVersion(androidId: 'com.aleix.knekroapp');
+    // newVersion.showAlertIfNecessary(context: context);
+    final status = await newVersion.getVersionStatus();
+    if (status!.localVersion != status.storeVersion) {
+      newVersion.showUpdateDialog(
+        context: context,
+        versionStatus: status,
+        dialogTitle: 'Actualización disponible.',
+        dismissButtonText: 'Cancelar',
+        dialogText: 'Porfavor actualiza la aplicacion a la version ' +
+            '${status.storeVersion}' +
+            ' para un correcto funcionamiento.',
+        dismissAction: () {
+          SystemNavigator.pop();
+        },
+        updateButtonText: 'Actualizar!',
+      );
+    }
+    print('DEVICE: ' + status.localVersion);
+    print('STORE; ' + status.storeVersion);
   }
 
   @override
